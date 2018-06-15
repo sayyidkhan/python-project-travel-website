@@ -69,7 +69,7 @@ def PrintTourPackageDetails(TourPackage):
     print ("Travel Period:", TourPackage.getPeriod())
     print ("Price:", TourPackage.getPrice())
 
-PrintTourPackageDetails(TourPackage())
+PrintTourPackageDetails(TourPackage)
 
 #End Q2.
 
