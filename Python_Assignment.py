@@ -3,7 +3,7 @@ import sys
 #Q1. Create the TourPackage class
 
 #class tourpackage
-class TourPackage():
+class TourPackage:
 
     #function __init__ the TourPackage
     def __init__(self, name = "no package name" , destination = "no destination" , duration = "no duration", period = "no travel period", price = 0.00):
@@ -63,11 +63,11 @@ class TourPackage():
 
 def PrintTourPackageDetails(TourPackage):
 
-    print ("Package Name:", TourPackage.getName())
-    print ("Destination:", TourPackage.getDestination())
-    print ("Duration:", TourPackage.getDuration())
-    print ("Travel Period:", TourPackage.getPeriod())
-    print ("Price:", TourPackage.getPrice())
+    print ("Package Name:", TourPackage.getName)
+    print ("Destination:", TourPackage.getDestination)
+    print ("Duration:", TourPackage.getDuration)
+    print ("Travel Period:", TourPackage.getPeriod)
+    print ("Price:", TourPackage.getPrice)
 
 PrintTourPackageDetails(TourPackage)
 
@@ -126,7 +126,7 @@ file.close()
 attributes = []
 
 
-for tourPackages in listOfTourPackages:
+for tourPackages in rawListOfTourPackages:
     attributes.append(TourPackage(tourPackages))
     #attributes.append(TourPackage(tourPackages))
     #attributes.append(TourPackage(tourPackages))
@@ -139,7 +139,7 @@ for dataSets in attributes:
 #End Q6.
 
 
-#print (attributes)
+print (attributes)
 
 #disable
 '''
