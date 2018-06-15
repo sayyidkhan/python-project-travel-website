@@ -124,7 +124,7 @@ file.close()
 attributes = []
 
 for tourPackages in rawListOfTourPackages:
-  attributes.append(TourPackage(tourPackages[0],tourPackages[1],tourPackages[2],tourPackages[3],tourPackages[4]))
+  attributes.append(TourPackage(tourPackages[0],tourPackages[1],tourPackages[2],tourPackages[3]))
   #attributes.append(TourPackage(updatedPackageData))
   #for tourPackageData in updatedPackages:
       #attributes.append(TourPackage(tourPackageData[0]))
