@@ -100,6 +100,10 @@ listOfTourPackages = []
 #		Read data into list "rawListOfTourPackages" from the "file" object created in Q4
 #		Close the file after data reading is done
 
+### "rawListOfTourPackages" list ###
+rawListOfTourPackages = []
+### "rawListOfTourPackages" list ###
+
 filePath = "input.txt"
 
 ### open the file path ###
@@ -110,7 +114,7 @@ for itemsInData in data:
     packages = [itemsInData]
     for itemsInPackages in packages:
         updatedPackages = itemsInPackages.strip('\n').replace('|',',').split(',')
-    listOfTourPackages.append(updatedPackages)
+    rawListOfTourPackages.append(updatedPackages)
 
 file.close()
 
