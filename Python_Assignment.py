@@ -63,13 +63,11 @@ class TourPackage:
 
 def PrintTourPackageDetails(TourPackage):
 
-    print ("Package Name:", TourPackage.getName)
-    print ("Destination:", TourPackage.getDestination)
-    print ("Duration:", TourPackage.getDuration)
-    print ("Travel Period:", TourPackage.getPeriod)
-    print ("Price:", TourPackage.getPrice)
-
-PrintTourPackageDetails(TourPackage)
+    print ("Package Name:", TourPackage.getName())
+    print ("Destination:", TourPackage.getDestination())
+    print ("Duration:", TourPackage.getDuration())
+    print ("Travel Period:", TourPackage.getPeriod())
+    print ("Price:", TourPackage.getPrice())
 
 #End Q2.
 
@@ -124,14 +122,14 @@ file.close()
     #Split data by '|' and put it into list named "attributes"
     #Put the values into a newly created TourPackage object
 attributes = []
-
+slicedObject = slice(5)
 
 for tourPackages in rawListOfTourPackages:
-    attributes.append(TourPackage(tourPackages))
+  updatedPackages = tourPackages
+  #attributes.append(TourPackage(updatedPackageData))
+  for tourPackageData in updatedPackages:
+      attributes.append(TourPackage(tourPackageData))
     #attributes.append(TourPackage(tourPackages))
-    #attributes.append(TourPackage(tourPackages))
-
-
 
 for dataSets in attributes:
     print (PrintTourPackageDetails(dataSets))
@@ -139,7 +137,9 @@ for dataSets in attributes:
 #End Q6.
 
 
+'''
 print (attributes)
+'''
 
 #disable
 '''
