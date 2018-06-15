@@ -28,7 +28,7 @@ class TourPackage:
         return self.period
     #function get price  - return the price
     def getPrice(self):
-        return float(self.price)
+        return self.price
     #function get gst price  - return the gst price
     def getPriceWithGST(self):
         priceWithGst = float(self.price) * 1.07
@@ -122,13 +122,12 @@ file.close()
     #Split data by '|' and put it into list named "attributes"
     #Put the values into a newly created TourPackage object
 attributes = []
-slicedObject = slice(5)
 
 for tourPackages in rawListOfTourPackages:
-  updatedPackages = tourPackages
+  attributes.append(TourPackage(tourPackages[0],tourPackages[1],tourPackages[2],tourPackages[3],tourPackages[4]))
   #attributes.append(TourPackage(updatedPackageData))
-  for tourPackageData in updatedPackages:
-      attributes.append(TourPackage(tourPackageData))
+  #for tourPackageData in updatedPackages:
+      #attributes.append(TourPackage(tourPackageData[0]))
     #attributes.append(TourPackage(tourPackages))
 
 for dataSets in attributes:
