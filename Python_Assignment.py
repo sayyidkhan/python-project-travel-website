@@ -111,12 +111,13 @@ data = file.readlines()
 for itemsInData in data:
     packages = [itemsInData]
     for itemsInPackages in packages:
-        updatedPackages = itemsInPackages.strip('\n').replace('|',',').split(',')
+        updatedPackages = itemsInPackages.strip('\n').split('|')
     rawListOfTourPackages.append(updatedPackages)
 
 file.close()
 
 #End Q5.
+
 
 #Q6. Loop through the list "rawListOfTourPackages" and put data into TourPackage object
     #Split data by '|' and put it into list named "attributes"
@@ -124,11 +125,8 @@ file.close()
 attributes = []
 
 for tourPackages in rawListOfTourPackages:
-  attributes.append(TourPackage(tourPackages[0],tourPackages[1],tourPackages[2],tourPackages[3]))
-  #attributes.append(TourPackage(updatedPackageData))
-  #for tourPackageData in updatedPackages:
-      #attributes.append(TourPackage(tourPackageData[0]))
-    #attributes.append(TourPackage(tourPackages))
+  attributes.append(TourPackage(tourPackages[0],tourPackages[1],tourPackages[2],tourPackages[3],tourPackages[4]))
+
 
 for dataSets in attributes:
     print (PrintTourPackageDetails(dataSets))
