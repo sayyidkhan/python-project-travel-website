@@ -137,7 +137,6 @@ listOfTourPackages = attributes[:]
 for dataSets in listOfTourPackages:
     PrintTourPackageDetails(dataSets)
 
-
 #End Q6.
 '''
 ### start of program ###
@@ -196,7 +195,7 @@ while (userInput != "Q"):
                 print("Displaying tour", tourPackageCounter , " of ", len(listOfTourPackages))
                 print("=================================")
                 ### PrintTourPackageDetails() function ###
-                print (PrintTourPackageDetails(listOfTourPackages[tourPackageCounter-1]))
+                PrintTourPackageDetails(listOfTourPackages[tourPackageCounter-1])
                 ### PrintTourPackageDetails() function ###
                 print("=================================")
                 print("Enter N for the next tour package")
@@ -226,7 +225,7 @@ while (userInput != "Q"):
         #end while
     #end if
 
-
+'''
     elif(userInput == "2"):
         tourPackageCounter = 1
         while(userInput != "M"):
@@ -304,3 +303,4 @@ while (userInput != "Q"):
 #end while
 
 ### end of program ###
+'''
