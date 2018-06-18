@@ -71,6 +71,7 @@ def PrintTourPackageDetails(TourPackage):
 
 #End Q2.
 
+
 #Q3. Create function SearchBasedOnNameOrDestination
 
 def SearchResult_Function(searchString,listOfTourPackages):
@@ -125,46 +126,60 @@ file.close()
 attributes = []
 
 for tourPackages in rawListOfTourPackages:
-  attributes.append(TourPackage(tourPackages[0],tourPackages[1],tourPackages[2],tourPackages[3],tourPackages[4]))
+  attributes.append(TourPackage(tourPackages[0], tourPackages[1], tourPackages[2], tourPackages[3], tourPackages[4]))
+
+### update/copy the listOfTourPackages database ###
+listOfTourPackages = attributes[:]
+### update/copy the listOfTourPackages database ###
+
+### validate the dataset for the attributes ###
+'''
+for dataSets in listOfTourPackages:
+    PrintTourPackageDetails(dataSets)
 
 
-for dataSets in attributes:
-    print (PrintTourPackageDetails(dataSets))
-    #print (PrintTourPackageDetails(TourPackage(dataSets))
 #End Q6.
-
-
 '''
-print (attributes)
-'''
+### start of program ###
 
-#disable
-'''
+############################
+#start of storage of strings
+############################
+
+#store the program end note
+programEnd = "Thank you for using Python Travel Agency"
+#store the main menu note
+mainmenuOption = "Back to Main Menu"
+
+############################
+#end of storage of strings
+############################
+
 selections = ["1. Display All Tour Packages",
               "2. Display Names of Tour Packages for Selection",
               "3. Search Tour Packages based on Name Substring",
               "Q. Press Q to quit"]
 userInput = ""
 
-
 while (userInput != "Q"):
     #print out the selection menu from "selections"
-    print("Main Menu\n" +
-          "----------\n" +
-          selections[0] + "\n" +
-          selections[1] + "\n" +
-          selections[2] + "\n"+
-          selections[3])
+    for options in selections:
+      print(options)
 
     userInput = input("Please input your selection\n")
 
     #check if user input is "Q", terminate the program
     if (userInput == "Q"):
-        sys.exit()
+        sys.exit("### " + "You have selected option " + ">> " + str(userInput) + " << " + " ###" \
+        + "\n" + "### " + str(programEnd) + " ###")
     #end if
 
-    #Print out the selected option
-    print("You have selected " + str(selections[int(userInput)-1]))
+    # Todo Start: Print out the selected option
+    else:
+        print("### You have selected option: " + " ###" \
+        + "\n" + "### " + str(selections[int(userInput)-1]) + " ###")
+    # Todo End: Print out the selected option
+
 
     if(userInput == "1"):
         tourPackageCounter = 1
@@ -175,10 +190,19 @@ while (userInput != "Q"):
             #<...insert code here...>
 
             #Q10 end try
+
                 #Q7. Print out the menu and print the tour package details using the "PrintTourPackageDetails()" function defined in Q2
 
-                #<...insert code here...>
-
+                print("Displaying tour", tourPackageCounter , " of ", len(listOfTourPackages))
+                print("=================================")
+                ### PrintTourPackageDetails() function ###
+                print (PrintTourPackageDetails(listOfTourPackages[tourPackageCounter-1]))
+                ### PrintTourPackageDetails() function ###
+                print("=================================")
+                print("Enter N for the next tour package")
+                print("Enter P for the previous tour package")
+                print("Enter M to return to the main menu")
+                print("Enter Q to completely quit the application")
                 #End Q7.
 
                 userInput = ""
@@ -201,6 +225,8 @@ while (userInput != "Q"):
             #Q10 end except
         #end while
     #end if
+
+
     elif(userInput == "2"):
         tourPackageCounter = 1
         while(userInput != "M"):
@@ -276,4 +302,5 @@ while (userInput != "Q"):
         #end while
     #end elif
 #end while
-'''
+
+### end of program ###
