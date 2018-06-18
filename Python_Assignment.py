@@ -126,11 +126,15 @@ file.close()
 attributes = []
 
 for tourPackages in rawListOfTourPackages:
-  attributes.append(TourPackage(tourPackages[0], tourPackages[1], tourPackages[2], tourPackages[3], tourPackages[4]))
+  attributes.append(TourPackage(tourPackages[0],tourPackages[1],tourPackages[2],tourPackages[3],tourPackages[4]))
 
 ### update/copy the listOfTourPackages database ###
 listOfTourPackages = attributes[:]
 ### update/copy the listOfTourPackages database ###
+
+### length of the tours ###
+noOfTourPackages = int(len(listOfTourPackages))
+### length of the tours ###
 
 ### validate the dataset for the attributes ###
 '''
@@ -139,6 +143,7 @@ for dataSets in listOfTourPackages:
 
 #End Q6.
 '''
+
 ### start of program ###
 
 ############################
@@ -181,18 +186,18 @@ while (userInput != "Q"):
 
 
     if(userInput == "1"):
+        userInput = ""
         tourPackageCounter = 1
 
-        while(userInput != "M"):
+        while(tourPackageCounter >= 1 and tourPackageCounter <= noOfTourPackages and userInput != "M"):
             #Q10. try
-
+#
             #<...insert code here...>
 
             #Q10 end try
 
                 #Q7. Print out the menu and print the tour package details using the "PrintTourPackageDetails()" function defined in Q2
-
-                print("Displaying tour", tourPackageCounter , " of ", len(listOfTourPackages))
+                print("Displaying tour", tourPackageCounter , " of ", noOfTourPackages)
                 print("=================================")
                 ### PrintTourPackageDetails() function ###
                 PrintTourPackageDetails(listOfTourPackages[tourPackageCounter-1])
@@ -201,11 +206,11 @@ while (userInput != "Q"):
                 print("Enter N for the next tour package")
                 print("Enter P for the previous tour package")
                 print("Enter M to return to the main menu")
-                print("Enter Q to completely quit the application")
                 #End Q7.
 
-                userInput = ""
                 userInput = input()
+                ### initalise to all upper case ###
+                userInput = userInput.upper()
 
                 #if user input is N, increase "tourPackageCounter" by 1, else if input is P, decrease "tourPackageCounter" by 1
                 if(userInput == "N"):
@@ -214,7 +219,7 @@ while (userInput != "Q"):
                 elif(userInput == "P"):
                     tourPackageCounter -= 1
                     if(tourPackageCounter == 0):
-                        tourPackageCounter = len(listOfTourPackages)
+                        tourPackageCounter = 1
                         print("Out of range, back to the last item.")
                 #end elif
             #Q10 except
@@ -225,8 +230,8 @@ while (userInput != "Q"):
         #end while
     #end if
 
-'''
     elif(userInput == "2"):
+        print("Displaying name of tour packages for selection")
         tourPackageCounter = 1
         while(userInput != "M"):
             #Q10. try
@@ -263,6 +268,8 @@ while (userInput != "Q"):
             #Q10 end except
         #end while
     #end elif
+
+'''
     elif(userInput == "3"):
         userInput = ""
         searchString = input("Please enter your search input\n")
