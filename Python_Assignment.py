@@ -33,6 +33,7 @@ class TourPackage:
     def getPriceWithGST(self):
         priceWithGst = float(self.price) * 1.07
         return priceWithGst
+        #return '%.2f' % priceWithGst
     #### end of the get functions for class TourPackage ####
 
     #### start of the set functions for class TourPackage ####
@@ -68,6 +69,14 @@ def PrintTourPackageDetails(TourPackage):
     print ("Duration:", TourPackage.getDuration())
     print ("Travel Period:", TourPackage.getPeriod())
     print ("Price:", TourPackage.getPrice())
+    #print ("Price:", TourPackage.getPriceWithGST())
+
+### function to print getName ###
+def PrintGetName(TourPackage):
+
+    return TourPackage.getName()
+
+### function to print getName ###
 
 #End Q2.
 
@@ -75,11 +84,10 @@ def PrintTourPackageDetails(TourPackage):
 #Q3. Create function SearchBasedOnNameOrDestination
 
 def SearchResult_Function(searchString,listOfTourPackages):
-
     searchResult = []
     ### use loops to find the array which contain value ###
     for tourPackage in listOfTourPackages:
-      if(tourPackage[1].lower().find(searchString.lower()) > -1 or tourPackage[0].lower().find(searchString.lower()) > -1):
+      if(tourPackage.getName().lower().find(searchString.lower()) > -1 or tourPackage.getDestination().lower().find(searchString.lower()) > -1):
         searchResult.append(tourPackage)
 
     return searchResult
@@ -140,9 +148,23 @@ noOfTourPackages = int(len(listOfTourPackages))
 '''
 for dataSets in listOfTourPackages:
     PrintTourPackageDetails(dataSets)
-
-#End Q6.
 '''
+#End Q6.
+
+### Additional Functions ###
+
+### changes all case string to upper case ###
+def upperCaseStringConverter(userInput):
+    if not userInput.isdigit():
+        userInput = userInput.upper()
+        return userInput
+    else:
+        pass
+        return userInput
+### changes all case string to upper case ###
+
+### Additional Functions ###
+
 
 ### start of program ###
 
@@ -171,6 +193,7 @@ while (userInput != "Q"):
       print(options)
 
     userInput = input("Please input your selection\n")
+    userInput = upperCaseStringConverter(userInput)
 
     #check if user input is "Q", terminate the program
     if (userInput == "Q"):
@@ -239,24 +262,45 @@ while (userInput != "Q"):
             #<...insert code here...>
 
             #Q10 end try
-                #Q8. Loop through "listOfTourPackages" to display the tour package Destination and Name using the "getDestination()" and "getName()" functions of TourPackage class found in Q1.
+                #Q7. Loop through "listOfTourPackages" to display the tour package Destination and Name using the "getDestination()" and "getName()" functions of TourPackage class found in Q1.
 
-                #<...insert code here...>
+                for i in range(noOfTourPackages):
+                    print (i + 1,".",PrintGetName(listOfTourPackages[i]))
 
-                #End Q8.
+                #End Q7.
+
+                ### function for userInput to check if value is a digit ###
+                ### convert all lower cases into upper cases ###
+
+
+                ### function for userInput to check if value is a digit ###
+
 
                 print("Enter M to return to Main Menu")
 
                 userInput = input("Please enter your selection\n")
+                ### changes the value to upper case if the value is a string ###
+                userInput = upperCaseStringConverter(userInput)
+
                 if(userInput != "M"):
                     while(userInput != "M"):
                         tourPackageCounter = int(userInput)
                         #Q7. Print out the selected individual tour package in "listOfTourPackages" using the "PrintTourPackageDetails()" function defined in Q2
 
                         #<...insert code here...>
+                        print("=================================")
+                        print("Displaying tour", tourPackageCounter , " of ", noOfTourPackages)
+                        print("=================================")
+                        PrintTourPackageDetails(listOfTourPackages[tourPackageCounter-1])
 
                         #End Q7.
-                        userInput = input()
+                        print("=================================")
+                        print("Select from option", 1, "to", noOfTourPackages)
+                        userInput = input("Enter another number to check another package or press M to previous menu")
+
+                        ### changes the value to upper case if the value is a string ###
+                        userInput = upperCaseStringConverter(userInput)
+
                     #end while
                     userInput = ""
                     tourPackageCounter = 1
@@ -269,18 +313,20 @@ while (userInput != "Q"):
         #end while
     #end elif
 
-'''
+
     elif(userInput == "3"):
         userInput = ""
         searchString = input("Please enter your search input\n")
         while(userInput != "M"):
 
             searchResult = []
-            #Q9. Based on the "searchString" input, call the SearchBasedOnNameOrDestination function to add the matching destination/name to "searchResult" list to be displayed later on
+            #Q8. Based on the "searchString" input, call the SearchBasedOnNameOrDestination function to add the matching destination/name to "searchResult" list to be displayed later on
 
-            #<...insert code here...>
+            ### "searchResult" list ###
+            searchResult = SearchResult_Function(searchString,listOfTourPackages)[:]
+            ### "searchResult" list ###
 
-            #End Q9.
+            #End Q8.
 
             #check the number of results
             if(len(searchResult) < 1):
@@ -294,11 +340,22 @@ while (userInput != "Q"):
             if(tourPackageCounter != 0):
                 #Q7. loop and print out all tour packages in "searchResult" using the "PrintTourPackageDetails()" function defined in Q2
 
-                #<...insert code here...>
+                ### to display the counter in print result ###
+                tourPackageDisplayCounter = 1
+                ### to display the counter in print result ###
+
+                for tourPackage in searchResult:
+                    print("=================================")
+                    print("Displaying tour", tourPackageDisplayCounter , " of ", len(searchResult))
+                    print("=================================")
+                    PrintTourPackageDetails(tourPackage)
+                    tourPackageDisplayCounter = tourPackageDisplayCounter + 1
 
 		        #End Q7.
             #end if
-            userInput = input("1. Search again\n2. Return to Main Menu\n")
+                userInput = input("1. Search again\nPress any buttons to go back\n")
+                ### changes the value to upper case if the value is a string ###
+                userInput = upperCaseStringConverter(userInput)
             if(userInput == "1"):
                 searchString = input("Please enter your search input\n")
             #end if
@@ -307,7 +364,7 @@ while (userInput != "Q"):
             #end else
         #end while
     #end elif
+
 #end while
 
 ### end of program ###
-'''
