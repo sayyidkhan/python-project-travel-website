@@ -151,9 +151,9 @@ for dataSets in listOfTourPackages:
 '''
 #End Q6.
 
-### Additional Functions ###
+### Start of Additional Functions ###
 
-### changes all case string to upper case ###
+### start of changes all case string to upper case ###
 def upperCaseStringConverter(userInput):
     if not userInput.isdigit():
         userInput = userInput.upper()
@@ -161,9 +161,18 @@ def upperCaseStringConverter(userInput):
     else:
         pass
         return userInput
-### changes all case string to upper case ###
+### end of changes all case string to upper case ###
 
-### Additional Functions ###
+### start of display tour counter display ###
+def tourCounterDisplay(tourPackageCounter,noOfTourPackages):
+    if (tourPackageCounter > noOfTourPackages):
+        pass
+    else:
+        print("=================================")
+        print("Displaying tour", tourPackageCounter , " of ", noOfTourPackages)
+### end of display tour counter display ###
+
+### End of Additional Functions ###
 
 
 ### start of program ###
@@ -212,15 +221,18 @@ while (userInput != "Q"):
         userInput = ""
         tourPackageCounter = 1
 
-        while(tourPackageCounter >= 1 and tourPackageCounter <= noOfTourPackages and userInput != "M"):
+        while(userInput != "M"):
+        #while(tourPackageCounter >= 1 and tourPackageCounter <= noOfTourPackages and userInput != "M"):
             #Q10. try
-#
-            #<...insert code here...>
+
+            try:
 
             #Q10 end try
 
                 #Q7. Print out the menu and print the tour package details using the "PrintTourPackageDetails()" function defined in Q2
-                print("Displaying tour", tourPackageCounter , " of ", noOfTourPackages)
+                ### will not display tour packages if tourpackages is above the current tour package available ###
+                tourCounterDisplay(tourPackageCounter,noOfTourPackages)
+                ### will not display tour packages if tourpackages is above the current tour package available ###
                 print("=================================")
                 ### PrintTourPackageDetails() function ###
                 PrintTourPackageDetails(listOfTourPackages[tourPackageCounter-1])
@@ -229,6 +241,7 @@ while (userInput != "Q"):
                 print("Enter N for the next tour package")
                 print("Enter P for the previous tour package")
                 print("Enter M to return to the main menu")
+
                 #End Q7.
 
                 userInput = input()
@@ -238,35 +251,52 @@ while (userInput != "Q"):
                 #if user input is N, increase "tourPackageCounter" by 1, else if input is P, decrease "tourPackageCounter" by 1
                 if(userInput == "N"):
                     tourPackageCounter += 1
+                    ### reset the counter if exceeds the number of tour packages ###
+                    '''
+                    if(userInput == "N" and tourPackageCounter > noOfTourPackages):
+                        tourPackageCounter = 1
+                    '''
+                    ### reset the counter if exceeds the number of tour packages ###
+
                 #end if
                 elif(userInput == "P"):
                     tourPackageCounter -= 1
+                    ### reset backwards the counter if exceeds the number of tour packages ###
+                    '''
                     if(tourPackageCounter == 0):
-                        tourPackageCounter = 1
+                        tourPackageCounter = noOfTourPackages
+                        print("Out of range, back to the last item.")
+                    '''
+                    ### reset backwards the counter if exceeds the number of tour packages ###
+                    if(tourPackageCounter == 0):
+                        tourPackageCounter = tourPackageCounter + 1
                         print("Out of range, back to the last item.")
                 #end elif
             #Q10 except
-
-            #<...insert code here...>
-
+            except (IndexError) as e:
+                print("You have entered a value out of range.")
+                print("=================================")
+                break
             #Q10 end except
         #end while
     #end if
 
     elif(userInput == "2"):
+        print("=================================")
         print("Displaying name of tour packages for selection")
         tourPackageCounter = 1
         while(userInput != "M"):
             #Q10. try
 
-            #<...insert code here...>
+            try:
 
             #Q10 end try
-                #Q7. Loop through "listOfTourPackages" to display the tour package Destination and Name using the "getDestination()" and "getName()" functions of TourPackage class found in Q1.
 
+                #Q7. Loop through "listOfTourPackages" to display the tour package Destination and Name using the "getDestination()" and "getName()" functions of TourPackage class found in Q1.
+                print("=================================")
                 for i in range(noOfTourPackages):
                     print (i + 1,".",PrintGetName(listOfTourPackages[i]))
-
+                print("=================================")
                 #End Q7.
 
                 ### function for userInput to check if value is a digit ###
@@ -286,10 +316,9 @@ while (userInput != "Q"):
                     while(userInput != "M"):
                         tourPackageCounter = int(userInput)
                         #Q7. Print out the selected individual tour package in "listOfTourPackages" using the "PrintTourPackageDetails()" function defined in Q2
-
-                        #<...insert code here...>
-                        print("=================================")
-                        print("Displaying tour", tourPackageCounter , " of ", noOfTourPackages)
+                        ### will not display tour packages if tourpackages is above the current tour package available ###
+                        tourCounterDisplay(tourPackageCounter,noOfTourPackages)
+                        ### will not display tour packages if tourpackages is above the current tour package available ###
                         print("=================================")
                         PrintTourPackageDetails(listOfTourPackages[tourPackageCounter-1])
 
@@ -307,7 +336,10 @@ while (userInput != "Q"):
                 #end if
             #Q10 except
 
-            #<...insert code here...>
+            except (IndexError,ValueError) as e:
+                print("You have entered an invalid value.")
+                print("=================================")
+                break
 
             #Q10 end except
         #end while
