@@ -172,6 +172,15 @@ def tourCounterDisplay(tourPackageCounter,noOfTourPackages):
         print("Displaying tour", tourPackageCounter , " of ", noOfTourPackages)
 ### end of display tour counter display ###
 
+### start of display List Data inside the input.txt ###
+def displayListData(input_text):
+    counter = 1
+    for list_data_1 in input_text:
+        print (counter,".", list_data_1)
+        counter = counter + 1
+
+### end of display List Data inside the input.txt ###
+
 ### End of Additional Functions ###
 
 
@@ -193,6 +202,8 @@ mainmenuOption = "Back to Main Menu"
 selections = ["1. Display All Tour Packages",
               "2. Display Names of Tour Packages for Selection",
               "3. Search Tour Packages based on Name Substring",
+              "4. Add New Travel Package",
+              "5. Remove Existing Travel Package",
               "Q. Press Q to quit"]
 userInput = ""
 
@@ -396,6 +407,136 @@ while (userInput != "Q"):
             #end else
         #end while
     #end elif
+
+    if(userInput == "4"):
+
+        while(userInput != "M"):
+            ### collect data to put into string ###
+            print("=================================")
+            print ("Welcome to Tour Package Updater")
+            print("=================================")
+
+            input_package = input("Enter the name of package : ")
+            input_destination = input("Enter the destination : ")
+            input_event_duration_day = int(input("enter the duration of event : "))
+            input_event_date = str(input("enter the duration period of event : "))
+            input_price = str(input("Enter the price of the package : "))
+
+            input_event_duration_night = 0
+            if input_event_duration_day > 0:
+                input_event_duration_night = input_event_duration_day - 1
+
+            def printEventDuration(input_event_duration_day,input_event_duration_night):
+                return (str(input_event_duration_day)+"D"+str(input_event_duration_night)+"N")
+
+
+
+            newPackage = (input_package + "|" + input_destination + "|" + \
+                          printEventDuration(input_event_duration_day,input_event_duration_night) + "|" +\
+                          input_event_date + "|" + input_price
+                          )
+            #+ input_event_date + str(input_price))
+            print("=================================")
+            print("Summary of New Package Added:")
+            print (newPackage)
+            print("=================================")
+            ### collect data to put into string ###
+
+
+            ### append file into input.txt ###
+            file = open('input.txt','a')
+            ### test dataset ###
+            #newData = "more hello world"
+            ### test dataset ###
+            file.write(newPackage)
+            file.close()
+            ### append file into input.txt ###
+
+            ### get input from user whether user wants to add any more package ###
+            userInput = input("1. Add another package, Press any buttons to exit\n")
+            ### changes the value to upper case if the value is a string ###
+            userInput = upperCaseStringConverter(userInput)
+
+            if(userInput == "1"):
+                pass
+            #end if
+            else:
+                userInput = "M"
+            #end else
+            ### get input from user whether user wants to add any more package ###
+
+            '''
+            ###test data ###
+            trumpKimFiesta
+            Singapore
+            5
+            12 June 2018 to 17 June 2018
+            2888
+            ### test data ###
+            '''
+
+        #end while
+    #end if
+
+    if(userInput == "5"):
+
+        while(userInput != "M"):
+            ### read existing data inside the file ###
+            print("=================================")
+            print ("Welcome to Tour Package Remover")
+            print("=================================")
+
+            input_text = []
+            file_read = open('input.txt','r')
+            for list_data_1 in file_read.readlines():
+                input_text.append(list_data_1.strip('\n'))
+
+            file_read.close()
+            displayListData(input_text)
+            ### read existing data inside the file ###
+
+            ### make changes to existing data inside the file ###
+            print("=================================")
+            listRemover = int(input("Select number from list to remove"))
+            print("=================================")
+            del input_text[listRemover - 1]
+            displayListData(input_text)
+            ### make changes to existing data inside the file ###
+
+            ### write new data into the file ###
+            joinInput_text = '\n'.join(input_text)
+            file_write = open('input.txt','w')
+            file_write.write(joinInput_text)
+            file_write.close()
+            ### write new data into the file ###
+
+            print("=================================")
+            print ("Package removed Successfully")
+            print("=================================")
+            ###test dataset ###
+            #trumpKimFiesta_1|Singapore|5D4N|12 June 2018 to 17 June 2018|2888
+            ###test dataset ###
+            ### write new data into the file ###
+            ### end of confirm removal ###
+
+
+            ### get input from user whether user wants to add any more package ###
+            print("=================================")
+            userInput = input("1. Remove another package \nPress any buttons to exit\n")
+            print("=================================")
+            ### changes the value to upper case if the value is a string ###
+            userInput = upperCaseStringConverter(userInput)
+
+            if(userInput == "1"):
+                pass
+            #end if
+            else:
+                userInput = "M"
+            #end else
+            ### get input from user whether user wants to add any more package ###
+
+        #end while
+    #end if
 
 #end while
 
